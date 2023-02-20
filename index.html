@@ -1,0 +1,35 @@
+<html>
+<head>
+    <title>Web Notepad</title>
+    <style>
+        body {
+            font-family: Arial;
+            font-size: 14px;
+            background-color: #f8f8f8;
+        }
+        input {
+            border: 1px solid #ccc;
+            padding: 5px 10px;
+ 
+        }
+        button {
+            background-color: #333;
+            color: #fff;
+            padding: 5px 10px;
+            border: none;
+        }
+    </style>
+    <script>
+        function saveData() {
+            var data = document.getElementById("data").value;
+            document.getElementById("data").value = data.replace(/\r/g, '\n');
+            localStorage.setItem("data", data);
+        }
+    </script>
+</head>
+<body>
+    <h1>网页记事本</h1>
+    <textarea id="data"></textarea>
+    <button onclick="saveData()">Save</button>
+</body>
+</html>
