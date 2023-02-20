@@ -1,35 +1,52 @@
 <html>
+
 <head>
-    <title>Web Notepad</title>
+    <title>99-网页记事本</title>
     <style>
         body {
-            font-family: Arial;
-            font-size: 14px;
-            background-color: #f8f8f8;
+            background-color: #ededed;
+            font-family: "Kaishu", serif
         }
-        input {
-            border: 1px solid #ccc;
-            padding: 5px 10px;
- 
+
+        h1 {
+            text-align: center;
         }
-        button {
-            background-color: #333;
-            color: #fff;
-            padding: 5px 10px;
-            border: none;
+
+        textarea {
+            border: 2px solid #c9c9c9;
+            padding: 10px;
+            width: 100%;
+            height: 100%;
         }
     </style>
-    <script>
-        function saveData() {
-            var data = document.getElementById("data").value;
-            document.getElementById("data").value = data.replace(/\r/g, '\n');
-            localStorage.setItem("data", data);
-        }
-    </script>
 </head>
-<body>
-    <h1>网页记事本</h1>
-    <textarea id="data"></textarea>
-    <button onclick="saveData()">Save</button>
+
+<body onload="loadNote()">
+    <h1>99-网页记事本</h1>
+    <div>
+        <form>
+            <textarea onkeyup="saveNote()"></textarea>
+        </form>
+    </div>
 </body>
+
+<script>
+    // Save note to localstorage
+    function saveNote() {
+        // Get note text
+        let note = document.querySelector(`textarea`).value;
+        localStorage.setItem('note', note);
+    }
+
+    // Load note from localstorage
+    function loadNote() {
+        let savedNote = localStorage.getItem('note');
+        if (savedNote) {
+            document.querySelector(`textarea`).value = savedNote;
+        }
+    }
+
+    loadNote();
+</script>
+
 </html>
